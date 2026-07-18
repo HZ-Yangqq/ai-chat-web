@@ -1,0 +1,65 @@
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.content {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.emptyTip {
+  text-align: center;
+  padding: 60px 0;
+  color: #999;
+}
+
+.messageRow {
+  text-align: left;
+
+  &.user {
+    text-align: right;
+  }
+}
+
+.bubble {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 12px;
+  max-width: 70%;
+  word-break: break-word;
+
+  &.user {
+    background: #1677ff;
+    color: #fff;
+  }
+
+  &.assistant {
+    background: #f0f0f0;
+    color: #333;
+  }
+}
+
+.sendArea {
+  text-align: right;
+}
