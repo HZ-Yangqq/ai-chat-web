@@ -1,12 +1,12 @@
 # AI Chat Web
 
-基于 React 18 + Ant Design 5 + Vite 6 的前端应用模板，提供 AI 聊天对话界面。
+基于 React 18 + Ant Design 6 + Vite 6 的前端应用模板，提供 AI 聊天对话界面。
 
 ## 技术栈
 
 - **框架**: React 18 + TypeScript
 - **构建工具**: Vite 6
-- **UI 库**: Ant Design 5.22 + Ant Design X
+- **UI 库**: Ant Design 6.1 + Ant Design X 2.x
 - **图标库**: @ant-design/icons 6.x
 - **路由**: react-router-dom 7（约定式路由）
 - **样式**: 纯 CSS + CSS Modules（`.module.css`）
@@ -79,7 +79,7 @@ src/
 
 ## 注意事项
 
-- antd 版本必须为 5.x（Ant Design X 要求）
+- antd 版本必须为 6.x（Ant Design X 2.x 要求）
 - 样式统一使用纯 CSS，禁止 SCSS/LESS，禁止内联样式
 - 组件样式使用 CSS Modules（`.module.css`）
 - 所有 import 使用 `@/` 路径别名

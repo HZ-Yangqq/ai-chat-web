@@ -1,4 +1,4 @@
-# React + Ant Design 5 + Vite 前端项目初始化 Skill
+# React + Ant Design 6 + Vite 前端项目初始化 Skill
 
 当用户要求创建一个新的 React 前端项目时，按照以下步骤执行。
 
@@ -8,7 +8,7 @@
 
 - **框架**: React 18 + TypeScript
 - **构建工具**: Vite 6
-- **UI 库**: Ant Design 5.22+（注意：不是 6.x）
+- **UI 库**: Ant Design 6.1+
 - **AI 组件**: Ant Design X
 - **图标库**: @ant-design/icons 6.x
 - **时间处理**: dayjs
@@ -46,8 +46,8 @@ cd my-app
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
-    "@ant-design/x": "^1.0.0",
-    "antd": "^5.22.0",
+    "@ant-design/x": "^2.8.0",
+    "antd": "^6.1.1",
     "dayjs": "^1.11.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -55,6 +55,7 @@ cd my-app
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^26.0.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
@@ -70,7 +71,7 @@ cd my-app
 }
 ```
 
-> ⚠️ 注意：antd 必须用 `^5.22.0`，不能用 `^6.0.0`。因为 `@ant-design/x` 的 peer dependency 要求 antd 5.x。
+> ⚠️ 注意：antd 必须用 `^6.1.1`，`@ant-design/x` 2.x 的 peer dependency 要求 antd 6.x。同时 devDependencies 中需要 `@types/node`（vite.config.ts 使用了 Node.js 内置模块）。
 
 ### 3. 创建 tsconfig.json
 
@@ -996,7 +997,7 @@ export default meta;
 
 ## 常见坑
 
-1. **antd 版本**：必须用 `^5.22.0`，不能用 `^6.0.0`。`@ant-design/x` 要求 antd 5.x。
+1. **antd 版本**：必须用 `^6.1.1`，`@ant-design/x` 2.x 要求 antd 6.x。
 2. **vite-env.d.ts**：必须创建，且需声明 `*.css` 和 `*.module.css`，否则 TS 报错。
 3. **样式文件**：统一使用纯 CSS（`.module.css`），禁止使用 SCSS/LESS 预处理器。
 4. **禁止内联样式**：除非特殊情况（动态计算值），所有样式必须写在 `.css` 文件中。
