@@ -1,5 +1,6 @@
 export { default as MessageList } from './MessageList'
 export { default as MessageBubble } from './MessageBubble'
+export { default as MessageActionsBubble } from './MessageActionsBubble'
 export { default as MarkdownRenderer } from './MarkdownRenderer'
 export { default as Cursor } from './Cursor'
 export { default as ChatInput } from './ChatInput'
@@ -10,5 +11,6 @@ export { default as ThinkingIndicator } from './ThinkingIndicator'
 export { default as CardRenderer } from './CardRenderer'
 export { default as ToolRunningCard } from './ToolRunningCard'
 export { default as UnknownCard } from './UnknownCard'
-// 以下在 Phase 4/5 完成后加入：
-// MessageActionsBubble, GenericInterruptContainer, GenericInterruptSlot, CustomInterruptRenderer
+export { default as GenericInterruptContainer } from './GenericInterruptContainer'
+export { default as GenericInterruptSlot } from './GenericInterruptSlot'
+export { default as CustomInterruptRenderer } from './CustomInterruptRenderer'

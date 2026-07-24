@@ -3,6 +3,7 @@ import type { ComponentType } from 'react'
 import { useChat } from '../../context'
 import type { Message, MessageBubbleProps, MessageActionsConfig } from '../../core/types'
 import MessageBubble from '../MessageBubble'
+import MessageActionsBubble from '../MessageActionsBubble'
 import styles from './index.module.css'
 
 export interface MessageListProps {
@@ -25,9 +26,16 @@ export default function MessageList({ bubbleComponent, messageActions }: Message
         <BubbleComponent message={message} isStreaming={isStreaming} isLastMessage={isLastMessage} />
       )
     }
-    // MessageActionsBubble 见 Phase 5，此前用 MessageBubble 占位。
+    // MessageActionsBubble 增强气泡（用户消息暂停态显示复制/编辑）。
     if (actionsEnabled) {
-      return <MessageBubble message={message} isStreaming={isStreaming} isLastMessage={isLastMessage} />
+      return (
+        <MessageActionsBubble
+          message={message}
+          isStreaming={isStreaming}
+          isLastMessage={isLastMessage}
+          config={messageActions}
+        />
+      )
     }
     return <MessageBubble message={message} isStreaming={isStreaming} isLastMessage={isLastMessage} />
   }

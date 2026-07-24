@@ -1,0 +1,12 @@
+.slot {
+  margin: 4px 0;
+}
+
+.fallback {
+  margin: 4px 0;
+  padding: 8px 12px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+  background: var(--chat-color-bg-secondary);
+  border-radius: var(--chat-radius-card);
+}

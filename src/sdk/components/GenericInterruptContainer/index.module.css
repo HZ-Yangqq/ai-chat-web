@@ -1,0 +1,135 @@
+.container {
+  background: var(--chat-color-bg);
+  border: 1px solid var(--chat-color-border);
+  border-radius: var(--chat-radius-panel);
+  box-shadow: var(--chat-shadow-panel);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--chat-color-border-light);
+}
+
+.headerLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headerIcon {
+  color: var(--chat-color-primary);
+}
+
+.headerTitle {
+  font-size: var(--chat-font-size-message);
+  font-weight: 500;
+  color: var(--chat-color-text);
+}
+
+.headerRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}
+
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pager [data-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.pager :global(.anticon) {
+  cursor: pointer;
+}
+
+.divider {
+  width: 1px;
+  height: 12px;
+  background: var(--chat-color-border);
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--chat-color-primary);
+}
+
+.body {
+  padding: 14px;
+}
+
+.question {
+  margin-bottom: 16px;
+}
+
+.questionTitle {
+  margin-bottom: 8px;
+  font-size: var(--chat-font-size-message);
+  color: var(--chat-color-text);
+}
+
+.required {
+  margin-left: 4px;
+  color: var(--chat-color-error);
+}
+
+.optionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.optionItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.optionLabel {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.recommendBadge {
+  padding: 0 6px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-primary);
+  background: var(--chat-color-primary-bg);
+  border-radius: 4px;
+}
+
+.optionDesc {
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}
+
+.customInput {
+  margin-top: 8px;
+}
+
+.fallback {
+  font-size: var(--chat-font-size-message);
+  color: var(--chat-color-text-secondary);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
