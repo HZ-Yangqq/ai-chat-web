@@ -1,0 +1,47 @@
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 0 var(--chat-padding-container) var(--chat-padding-container);
+}
+
+.actionItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: var(--chat-font-size-message);
+  color: var(--chat-color-text);
+  text-align: left;
+  cursor: pointer;
+  background: var(--chat-color-bg-secondary);
+  border: 1px solid var(--chat-color-border);
+  border-radius: var(--chat-radius-card);
+  transition: all var(--chat-transition-fast);
+}
+
+.actionItem:hover {
+  color: var(--chat-color-primary);
+  background: var(--chat-color-primary-bg);
+  border-color: var(--chat-color-primary-light);
+}
+
+.actionIcon {
+  display: inline-flex;
+  font-size: 16px;
+}
+
+.actionBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionLabel {
+  font-weight: 500;
+}
+
+.actionDesc {
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}

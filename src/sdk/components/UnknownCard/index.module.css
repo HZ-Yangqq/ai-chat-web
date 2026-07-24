@@ -1,0 +1,22 @@
+.unknownCard {
+  margin: 4px 0;
+  padding: 10px 12px;
+  background: var(--chat-color-bg-secondary);
+  border: 1px solid var(--chat-color-border);
+  border-radius: var(--chat-radius-card);
+}
+
+.title {
+  margin-bottom: 6px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}
+
+.data {
+  margin: 0;
+  padding: 8px;
+  overflow-x: auto;
+  font-size: var(--chat-font-size-small);
+  background: var(--chat-color-bg-tertiary);
+  border-radius: 4px;
+}

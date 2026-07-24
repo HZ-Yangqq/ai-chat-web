@@ -1,0 +1,63 @@
+.card {
+  margin: 4px 0;
+  background: var(--chat-color-bg-secondary);
+  border: 1px solid var(--chat-color-border-light);
+  border-radius: var(--chat-radius-card);
+  box-shadow: var(--chat-shadow-card);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.label {
+  flex: 1;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text);
+}
+
+.successIcon {
+  color: var(--chat-color-success);
+}
+
+.errorIcon {
+  color: var(--chat-color-error);
+}
+
+.loadingIcon {
+  color: var(--chat-color-primary);
+}
+
+.arrow {
+  font-size: 12px;
+  color: var(--chat-color-text-tertiary);
+  transition: transform var(--chat-transition-fast);
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.body {
+  padding: 0 12px 10px;
+}
+
+.toolName {
+  margin-bottom: 6px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}
+
+.paramsBox {
+  margin: 0;
+  padding: 8px;
+  overflow-x: auto;
+  font-size: var(--chat-font-size-small);
+  background: var(--chat-color-bg-tertiary);
+  border-radius: 4px;
+}

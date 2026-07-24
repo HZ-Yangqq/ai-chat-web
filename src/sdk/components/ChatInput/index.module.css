@@ -1,0 +1,14 @@
+.chatInput {
+  padding: 0 var(--chat-padding-container) var(--chat-padding-container);
+}
+
+.senderHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.footerBar {
+  width: 100%;
+}

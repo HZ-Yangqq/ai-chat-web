@@ -1,0 +1,8 @@
+.messageList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--chat-gap-message);
+  padding: var(--chat-padding-container);
+  overflow-y: auto;
+}

@@ -1,0 +1,7 @@
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}

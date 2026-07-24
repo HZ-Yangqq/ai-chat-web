@@ -1,0 +1,23 @@
+.thinkTitle {
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+}
+
+.thinkBlock {
+  margin: 4px 0;
+}
+
+.thinkBlock :global(.ant-think-content),
+.thinkBlock > div:last-child {
+  padding: 10px 12px;
+  font-size: var(--chat-font-size-small);
+  line-height: 1.7;
+  color: var(--chat-color-text-secondary);
+  white-space: pre-wrap;
+  background: var(--chat-color-bg-secondary);
+  border-radius: var(--chat-radius-card);
+}
+
+.statusPill {
+  font-size: var(--chat-font-size-small);
+}

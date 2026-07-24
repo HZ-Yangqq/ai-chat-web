@@ -1,0 +1,88 @@
+.markdown {
+  font-size: var(--chat-font-size-message);
+  line-height: 1.7;
+  color: var(--chat-color-text);
+  word-break: break-word;
+}
+
+.markdown p {
+  margin: 0 0 8px;
+}
+
+.markdown p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 4px 0 8px;
+  padding-left: 20px;
+}
+
+.markdown li {
+  margin: 2px 0;
+}
+
+.markdown pre {
+  margin: 8px 0;
+  padding: 12px;
+  overflow: auto;
+  background: var(--chat-color-bg-tertiary);
+  border-radius: var(--chat-radius-card);
+}
+
+.markdown code {
+  padding: 1px 4px;
+  font-size: 0.92em;
+  background: var(--chat-color-bg-tertiary);
+  border-radius: 4px;
+}
+
+.markdown pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.tableContainer {
+  margin: 8px 0;
+  overflow: hidden;
+  border: 1px solid var(--chat-color-border);
+  border-radius: var(--chat-radius-card);
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: var(--chat-font-size-small);
+  color: var(--chat-color-text-secondary);
+  cursor: pointer;
+  user-select: none;
+  background: var(--chat-color-bg-secondary);
+  border-bottom: 1px solid var(--chat-color-border-light);
+}
+
+.tableHeader:hover {
+  color: var(--chat-color-primary);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.tableWrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableWrapper th,
+.tableWrapper td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid var(--chat-color-border-light);
+}
+
+.tableWrapper th {
+  background: var(--chat-color-bg-secondary);
+}

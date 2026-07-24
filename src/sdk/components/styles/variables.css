@@ -1,0 +1,43 @@
+:root {
+  /* Primary */
+  --chat-color-primary: #7c3aed;
+  --chat-color-primary-hover: #6d28d9;
+  --chat-color-primary-light: #e1d9ff;
+  --chat-color-primary-bg: #faf5ff;
+  --chat-color-primary-bg-hover: #f5f0ff;
+  /* Text */
+  --chat-color-text: #1f2937;
+  --chat-color-text-secondary: #6b7280;
+  --chat-color-text-tertiary: #9ca3af;
+  /* Background */
+  --chat-color-bg: #ffffff;
+  --chat-color-bg-secondary: #f9fafb;
+  --chat-color-bg-tertiary: #f3f4f6;
+  /* Border */
+  --chat-color-border: #e5e7eb;
+  --chat-color-border-light: #f0f0f0;
+  /* Semantic */
+  --chat-color-success: #52c41a;
+  --chat-color-error: #ff4d4f;
+  --chat-color-warning: #faad14;
+  /* Radius */
+  --chat-radius-bubble: 12px;
+  --chat-radius-card: 8px;
+  --chat-radius-toolbar-btn: 16px;
+  --chat-radius-panel: 12px;
+  /* Font size */
+  --chat-font-size-message: 14px;
+  --chat-font-size-toolbar: 13px;
+  --chat-font-size-small: 12px;
+  /* Height */
+  --chat-height-toolbar-btn: 28px;
+  /* Spacing */
+  --chat-padding-container: 20px;
+  --chat-gap-message: 16px;
+  /* Shadow */
+  --chat-shadow-panel: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+  --chat-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02);
+  /* Transition */
+  --chat-transition-fast: 0.15s ease;
+  --chat-transition-normal: 0.25s ease;
+}
