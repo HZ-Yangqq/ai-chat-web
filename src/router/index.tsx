@@ -1,29 +1,19 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import React from 'react';
+import { generateRoutes } from './generate';
 
-// 懒加载 home 页面
-const Home = React.lazy(() => import('../pages/home'));
-
-// 创建路由实例
+// 自动生成路由 + 手动补充特殊路由
 const router = createBrowserRouter([
-  // 重定向根路径到 /home
+  // 根路径重定向到 /home
   {
     path: '/',
     element: <Navigate to="/home" replace />,
   },
-  // 手动注册路由
-  {
-    path: '/home',
-    element: (
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <Home />
-      </React.Suspense>
-    ),
-  },
+  // 约定式路由（自动扫描 pages/ 目录）
+  ...generateRoutes(),
   // 404 兜底
   {
     path: '*',
-    element: <div className="not-found">404 - Page Not Found</div>,
+    element: <div className="not-found">404 - 页面不存在</div>,
   },
 ]);
 

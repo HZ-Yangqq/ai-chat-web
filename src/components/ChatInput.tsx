@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Input } from 'antd';
-import styles from './ChatInput.module.scss';
+import styles from './ChatInput.module.css';
 
 const { TextArea } = Input;
 

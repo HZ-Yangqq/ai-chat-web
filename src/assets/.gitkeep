@@ -1,0 +1,4 @@
+此目录用于存放静态资源（图片、字体、SVG 图标等）。
+
+Vite 会自动处理此目录下的资源引用，使用方式：
+import logo from '@/assets/logo.png';

@@ -36,10 +36,10 @@
 
 .messageRow {
   text-align: left;
+}
 
-  &.user {
-    text-align: right;
-  }
+.messageRow.user {
+  text-align: right;
 }
 
 .bubble {
@@ -48,16 +48,16 @@
   border-radius: 12px;
   max-width: 70%;
   word-break: break-word;
+}
 
-  &.user {
-    background: #1677ff;
-    color: #fff;
-  }
+.bubble.user {
+  background: #1677ff;
+  color: #fff;
+}
 
-  &.assistant {
-    background: #f0f0f0;
-    color: #333;
-  }
+.bubble.assistant {
+  background: #f0f0f0;
+  color: #333;
 }
 
 .sendArea {

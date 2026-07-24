@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { DATETIME_FORMAT } from '../constants';
+import { DATETIME_FORMAT } from '@/constants';
 
 /**
  * 防抖函数

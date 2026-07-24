@@ -4,6 +4,9 @@ node_modules/
 # build output
 dist/
 
+# typescript build info
+*.tsbuildinfo
+
 # editor
 .vscode/*
 !.vscode/extensions.json
@@ -20,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# env
+# env (local overrides)
 .env.local
 .env.*.local

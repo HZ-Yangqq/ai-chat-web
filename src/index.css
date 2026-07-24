@@ -18,3 +18,12 @@ body {
   text-align: center;
   padding: 100px;
 }
+
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #999;
+  font-size: 14px;
+}
