@@ -13,6 +13,7 @@ import {
   type ReactNode,
 } from 'react'
 import { createAgent, eventBus } from '../core'
+import { useModalManager } from './ModalManager'
 import type {
   AboveInputEntry,
   AgentCallbacks,
@@ -600,12 +601,20 @@ export function ChatProvider(props: ChatProviderProps) {
   sendMessageRef.current = sendMessage
 
   /* ---------------- openModal ---------------- */
+  // 稳定引用：弹窗内容组件用最新的 sendMessage，但不因其变化重建 manager。
+  const stableSendMessage = useCallback<SendMessageFn>(
+    (content, options) => sendMessageRef.current(content, options),
+    [],
+  )
+  const { modalElement, openModal: managedOpenModal } = useModalManager(stableSendMessage)
+
+  // 外部传入 openModal 优先（可对接宿主弹窗体系）；否则用 SDK 内置命令式弹窗。
   const openModal = useCallback<OpenModalFn>(
     (component, modalProps, config) => {
       if (openModalFn) return openModalFn(component, modalProps, config)
-      return Promise.resolve(null)
+      return managedOpenModal(component, modalProps, config)
     },
-    [openModalFn],
+    [openModalFn, managedOpenModal],
   )
 
   /* ---------------- value ---------------- */
@@ -656,5 +665,10 @@ export function ChatProvider(props: ChatProviderProps) {
     ],
   )
 
-  return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>
+  return (
+    <ChatContext.Provider value={value}>
+      {children}
+      {modalElement}
+    </ChatContext.Provider>
+  )
 }

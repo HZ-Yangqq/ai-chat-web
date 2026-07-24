@@ -11,7 +11,7 @@ import {
   type Ref,
 } from 'react'
 import { Button, Spin } from 'antd'
-import { ChatProvider, useChat, useModalManager } from './context'
+import { ChatProvider, useChat } from './context'
 import { MessageList, ChatInput, AboveInputRegion, QuickActions } from './components'
 import GenericInterruptSlot from './components/GenericInterruptSlot'
 import type {
@@ -53,7 +53,6 @@ function ChatSDKInner(props: ChatSDKInnerProps) {
     innerRef,
   } = props
   const { state, sendMessage, switchThread, createThread } = useChat()
-  const { modalElement } = useModalManager(sendMessage)
   const hasMessages = state.messages.length > 0
   const { threadLoading, threadLoadError, currentThreadId } = state
 
@@ -109,7 +108,6 @@ function ChatSDKInner(props: ChatSDKInnerProps) {
       {inputPosition === 'bottom' && <AboveInputRegion />}
       {inputPosition === 'bottom' && inputEl}
       <GenericInterruptSlot />
-      {modalElement}
     </div>
   )
 }

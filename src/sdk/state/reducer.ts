@@ -546,7 +546,7 @@ export function createReducer() {
       case TOOL_CALL_ARGS: {
         const { messageId, toolCallId, args } = action.payload
         const messages = state.messages.map((m) => {
-          if (m.id !== messageId) return m
+          if (!(m.id === messageId && m.role === 'assistant')) return m
           const cards = m.cards.map((c) =>
             c.toolCallId === toolCallId ? { ...c, cardData: { ...c.cardData, ...args } } : c,
           )
@@ -558,7 +558,7 @@ export function createReducer() {
       case TOOL_CALL_END: {
         const { messageId, toolCallId, displayMessage } = action.payload
         const messages = state.messages.map((m) => {
-          if (m.id !== messageId) return m
+          if (!(m.id === messageId && m.role === 'assistant')) return m
           const cards = m.cards.map((c) => {
             if (c.toolCallId !== toolCallId) return c
             return {

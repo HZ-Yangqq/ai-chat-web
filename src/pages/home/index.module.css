@@ -1,37 +1,12 @@
 .chatContainer {
+  /* 视口高度减去 Header(64) 与 Content 上下 padding(24*2) */
+  height: calc(100vh - 64px - 48px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
-.emptyTip {
+.welcome {
   text-align: center;
   padding: 60px 0;
   color: #999;
-}
-
-.messageRow {
-  text-align: left;
-}
-
-.messageRow.user {
-  text-align: right;
-}
-
-.bubble {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 12px;
-  max-width: 70%;
-  word-break: break-word;
-}
-
-.bubble_user {
-  background: #1677ff;
-  color: #fff;
-}
-
-.bubble_assistant {
-  background: #f0f0f0;
-  color: #333;
 }
