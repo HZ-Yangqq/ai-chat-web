@@ -19,7 +19,6 @@ function Home() {
   const handleSend = (content: string) => {
     const userMsg: Message = { role: 'user', content };
     setMessages((prev) => [...prev, userMsg]);
-
     // 模拟 AI 回复
     setTimeout(() => {
       const aiMsg: Message = { role: 'assistant', content: `收到你的消息："${content}"，这是模拟回复。` };
