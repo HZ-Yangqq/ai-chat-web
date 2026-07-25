@@ -18,7 +18,7 @@
   font-size: 22px;
   font-weight: 700;
   margin: 0 0 24px 6px;
-  background: linear-gradient(90deg, #8db9f7, #7c3aed);
+  background: linear-gradient(90deg, #5b9dfa, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -41,6 +41,7 @@
   border-radius: 6px;
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s;
+  font-family: "Microsoft YaHei", "Segoe UI", system-ui, Roboto, "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
 }
 
 .createBtn:hover {
@@ -49,9 +50,10 @@
 }
 
 .listLabel {
-  padding: 8px 12px 4px;
+  padding: 8px 18px 4px;
   font-size: 12px;
   color: #ccc;
+  font-family: "Microsoft YaHei", "Segoe UI", system-ui, Roboto, "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
 }
 
 .list {
