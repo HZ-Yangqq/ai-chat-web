@@ -57,8 +57,8 @@
 }
 
 .itemTitle {
-  font-size: 13px;
-  color: var(--ant-color-text, #333);
+  font-size: 14px;
+  color: #222;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

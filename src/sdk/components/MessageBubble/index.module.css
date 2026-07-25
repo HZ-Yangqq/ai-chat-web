@@ -38,7 +38,6 @@
 
 .aiBubble {
   color: var(--chat-color-text);
-  background: var(--chat-color-bg-secondary);
 }
 
 .errorFallback {
