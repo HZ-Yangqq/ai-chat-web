@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Popconfirm, message } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { getThreadList, deleteThread } from '@/service/chat';
 import type { ThreadListItem } from '@/service/types';
 import styles from './index.module.css';
@@ -15,13 +15,11 @@ export interface SidebarHandle {
 
 function formatTime(ts: number): string {
   const d = new Date(ts);
-  return d.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  const MM = String(d.getMonth() + 1).padStart(2, '0');
+  const DD = String(d.getDate()).padStart(2, '0');
+  const HH = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  return `${MM}/${DD} ${HH}:${mm}`;
 }
 
 const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
@@ -70,14 +68,14 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
     <aside className={styles.sidebar}>
       <div className={styles.header}>
         <div className={styles.brand}>Yang Chat</div>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          block
-          onClick={handleCreate}
-        >
-          新建会话
-        </Button>
+        <div className={styles.btnWrap}>
+          <Button
+            icon={<PlusCircleOutlined />}
+            onClick={handleCreate}
+          >
+            新建会话
+          </Button>
+        </div>
       </div>
       <div className={styles.list}>
         {loading && !threads.length && (

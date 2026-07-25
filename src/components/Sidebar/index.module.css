@@ -3,6 +3,7 @@
   min-width: 260px;
   height: 100%;
   display: flex;
+  background: rgb(247, 247, 249);
   flex-direction: column;
   border-right: 1px solid var(--ant-color-border-secondary, #f0f0f0);
   background: var(--ant-color-bg-container, #fff);
@@ -16,11 +17,17 @@
 .brand {
   font-size: 22px;
   font-weight: 700;
-  margin: 0 0 24px 6px;
-  background: linear-gradient(90deg, #1677ff, #7c3aed);
+  margin: 0 0 24px 0;
+  text-align: center;
+  background: linear-gradient(90deg, #8db9f7, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.btnWrap {
+  display: flex;
+  justify-content: center;
 }
 
 .list {
@@ -71,6 +78,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: "Microsoft YaHei", "Segoe UI", system-ui, Roboto, "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
 }
 
 .itemTime {
@@ -82,9 +90,14 @@
 .itemDelete {
   font-size: 12px;
   color: var(--ant-color-text-quaternary, #bbb);
-  transition: color 0.2s;
+  transition: color 0.2s, opacity 0.2s;
   flex-shrink: 0;
   margin-top: 2px;
+  opacity: 0;
+}
+
+.item:hover .itemDelete {
+  opacity: 1;
 }
 
 .itemDelete:hover {
