@@ -38,6 +38,7 @@ export const TOGGLE_HISTORY_PANEL = 'TOGGLE_HISTORY_PANEL' as const
 export const SET_PENDING_INTERRUPT = 'SET_PENDING_INTERRUPT' as const
 export const CLEAR_PENDING_INTERRUPT = 'CLEAR_PENDING_INTERRUPT' as const
 export const SET_CUSTOM_INTERRUPTS = 'SET_CUSTOM_INTERRUPTS' as const
+export const REMOVE_PENDING_MESSAGE = 'REMOVE_PENDING_MESSAGE' as const
 
 export type ChatAction =
   | { type: typeof SET_LOGIN_STATUS; payload: { isLoggedIn: boolean; userInfo?: UserInfo | null } }
@@ -101,3 +102,4 @@ export type ChatAction =
       type: typeof SET_CUSTOM_INTERRUPTS
       payload: { messageId: string; interrupts: CustomInterrupt[] }
     }
+  | { type: typeof REMOVE_PENDING_MESSAGE; payload?: undefined }

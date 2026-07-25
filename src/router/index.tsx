@@ -1,20 +1,35 @@
+import React from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { generateRoutes } from './generate';
+import ChatLayout from '@/layouts/ChatLayout';
 
-// 自动生成路由 + 手动补充特殊路由
+// Chat 页面懒加载
+const NewChatPage = React.lazy(() => import('@/pages/chat/index'));
+const ChatDetailPage = React.lazy(() => import('@/pages/chat/detail'));
+
+function LazyWrap({ children }: { children: React.ReactNode }) {
+  return (
+    <React.Suspense fallback={<div className="page-loading">加载中...</div>}>
+      {children}
+    </React.Suspense>
+  );
+}
+
 const router = createBrowserRouter([
-  // 根路径重定向到 /home
+  // 根路径重定向到 /chat
+  { path: '/', element: <Navigate to="/chat" replace /> },
+  // Chat 路由（嵌套布局：Sidebar + 内容区）
   {
-    path: '/',
-    element: <Navigate to="/home" replace />,
+    path: '/chat',
+    element: <ChatLayout />,
+    children: [
+      { index: true, element: <LazyWrap><NewChatPage /></LazyWrap> },
+      { path: ':threadId', element: <LazyWrap><ChatDetailPage /></LazyWrap> },
+    ],
   },
-  // 约定式路由（自动扫描 pages/ 目录）
-  ...generateRoutes(),
+  // 兼容旧 /home 路径
+  { path: '/home', element: <Navigate to="/chat" replace /> },
   // 404 兜底
-  {
-    path: '*',
-    element: <div className="not-found">404 - 页面不存在</div>,
-  },
+  { path: '*', element: <div className="not-found">404 - 页面不存在</div> },
 ]);
 
 export default router;

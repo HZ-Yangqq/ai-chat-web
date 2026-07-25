@@ -25,7 +25,7 @@ function parseSseLine(line: string): any | null {
 }
 
 /** 按 event.type 分发到对应 callback。 */
-function dispatchEvent(event: any, callbacks: AgentCallbacks): void {
+export function dispatchEvent(event: any, callbacks: AgentCallbacks): void {
   switch (event?.type) {
     case EVENT_TYPE.RUN_STARTED:
       callbacks.onRunStarted?.(event)

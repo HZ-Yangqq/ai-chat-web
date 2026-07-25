@@ -38,6 +38,7 @@ import {
   TOOL_EXEC_START,
   TOOL_EXEC_UPDATE,
   UPDATE_THINKING,
+  REMOVE_PENDING_MESSAGE,
 } from './actions'
 
 export const initialState: ChatState = {
@@ -636,6 +637,18 @@ export function createReducer() {
           }
         })
         return { ...state, messages }
+      }
+
+      case REMOVE_PENDING_MESSAGE: {
+        // 移除最后一条处于 streaming 状态的 AI 消息（为重连腾位）
+        const msgs = [...state.messages]
+        for (let i = msgs.length - 1; i >= 0; i--) {
+          if (msgs[i].role === 'assistant' && msgs[i].status === 'streaming') {
+            msgs.splice(i, 1)
+            break
+          }
+        }
+        return { ...state, messages: msgs }
       }
 
       default:

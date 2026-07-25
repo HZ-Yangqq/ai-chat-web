@@ -13,6 +13,7 @@ import {
   type ReactNode,
 } from 'react'
 import { createAgent, eventBus } from '../core'
+import { dispatchEvent } from '../core/agent'
 import { useModalManager } from './ModalManager'
 import type {
   AboveInputEntry,
@@ -41,6 +42,7 @@ import {
   initialState,
   MESSAGES_SNAPSHOT,
   NEW_THREAD,
+  REMOVE_PENDING_MESSAGE,
   SET_CUSTOM_INTERRUPTS,
   SET_ERROR,
   SET_LOGIN_STATUS,
@@ -497,6 +499,56 @@ export function ChatProvider(props: ChatProviderProps) {
     [tools, customEventHandlers, executeToolCall, onRunStart, onRunFinish],
   )
 
+  /* ---------------- reconnectRun（全量回放+续流） ---------------- */
+  const reconnectRunRef = useRef<((threadId: string) => void) | null>(null)
+
+  const reconnectRun = useCallback(
+    async (threadId: string) => {
+      // 移除 pending 占位消息，为重连流腾位
+      dispatch({ type: REMOVE_PENDING_MESSAGE })
+      const runId = `run_reconnect_${generateId()}`
+      dispatch({ type: START_RUN, payload: { runId } })
+
+      const callbacks = buildRunCallbacks(`msg_${generateId()}`, false)
+      const url = `${agentConfigRef.current.url.replace(/\/agent$/, '')}/threads/${threadId}/reconnect`
+
+      try {
+        const response = await fetch(url, { method: 'GET' })
+        if (!response.ok || !response.body) {
+          dispatch({ type: FINISH_RUN })
+          return
+        }
+        const reader = response.body.getReader()
+        const decoder = new TextDecoder()
+        let buffer = ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          buffer += decoder.decode(value, { stream: true })
+          const lines = buffer.split('\n')
+          buffer = lines.pop() || ''
+          for (const line of lines) {
+            const trimmed = line.trim()
+            if (!trimmed.startsWith('data:')) continue
+            const data = trimmed.slice(5).trim()
+            if (data === '[DONE]') continue
+            try {
+              const event = JSON.parse(data)
+              // 复用 agent.ts 的事件分发逻辑
+              dispatchEvent(event, callbacks)
+            } catch { /* skip */ }
+          }
+        }
+      } catch {
+        // 网络错误静默处理
+      }
+      dispatch({ type: FINISH_RUN })
+    },
+    [buildRunCallbacks],
+  )
+
+  reconnectRunRef.current = reconnectRun
+
   /* ---------------- switchThread ---------------- */
   const switchThread = useCallback(
     async (threadId: string) => {
@@ -520,6 +572,16 @@ export function ChatProvider(props: ChatProviderProps) {
             type: SET_THREAD_LOAD_ERROR,
             payload: { error: e.displayMessage || e.error },
           }),
+        onMessagesSnapshot: (event) => {
+          dispatch({ type: MESSAGES_SNAPSHOT, payload: { messages: event.messages || [] } })
+          // 检测最后一条消息是否为 pending（正在生成中），若是则自动重连
+          const msgs = event.messages || []
+          const lastMsg = msgs[msgs.length - 1]
+          if (lastMsg && lastMsg.role === 'assistant' && lastMsg.status === 'pending') {
+            // 延迟一帧执行重连，确保 snapshot 状态已更新
+            setTimeout(() => reconnectRunRef.current?.(threadId), 0)
+          }
+        },
       }
       await agentRef.current?.run(input, switchCallbacks)
     },
