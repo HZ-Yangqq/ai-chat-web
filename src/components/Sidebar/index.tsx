@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Popconfirm, message } from 'antd';
-import { DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { getThreadList, deleteThread } from '@/service/chat';
 import type { ThreadListItem } from '@/service/types';
 import styles from './index.module.css';
@@ -70,7 +70,7 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
         <div className={styles.brand}>Yang Chat</div>
         <div className={styles.btnWrap}>
           <div className={styles.createBtn} onClick={handleCreate}>
-            <PlusCircleOutlined />
+            <PlusOutlined />
             <span>新建会话</span>
           </div>
         </div>

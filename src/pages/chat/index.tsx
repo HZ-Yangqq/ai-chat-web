@@ -45,8 +45,7 @@ export default function NewChatPage() {
   return (
     <div className={styles.container}>
       <div className={styles.welcomeArea}>
-        <h1 className={styles.title}>AI Chat</h1>
-        <p className={styles.subtitle}>开始一段新的对话吧</p>
+        <h1 className={styles.title}>开始一段新的对话吧</h1>
       </div>
       <div className={styles.inputArea}>
         <div className={styles.inputWrapper}>
