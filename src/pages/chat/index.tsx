@@ -27,6 +27,8 @@ export default function NewChatPage() {
         context: [],
         forwardedProps: {},
       });
+      // 触发事件通知 Sidebar 刷新列表
+      window.dispatchEvent(new CustomEvent('newThreadCreated'));
       navigate(`/chat/${threadId}`, { replace: true });
     } catch (err) {
       console.error('[NewChat] createThread failed:', err);
