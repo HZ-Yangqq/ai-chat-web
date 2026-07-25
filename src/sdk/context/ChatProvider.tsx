@@ -222,10 +222,7 @@ export function ChatProvider(props: ChatProviderProps) {
           payload: { isLoggedIn: true, userInfo: { name: '' } },
         })
       }
-      if (!stateRef.current.currentThreadId) {
-        const threadId = `thread_${generateId()}`
-        dispatch({ type: NEW_THREAD, payload: { threadId, skipThreadsList: true } })
-      }
+      // 注意：不再在此处自动创建 threadId，由 sendMessage 或 switchThread 处理
       onReady?.()
     }
     init()
@@ -289,15 +286,17 @@ export function ChatProvider(props: ChatProviderProps) {
     }
   }, [authAdapter])
 
-  /* ---------------- createThread ---------------- */
-  const createThread = useCallback(async () => {
+  /* ---------------- createThread（指定 threadId）---------------- */
+  const createThread = useCallback(async (existingThreadId?: string) => {
     const cur = stateRef.current
     if (cur.isStreaming || cur.pendingInterrupt) {
       agentRef.current?.abort()
       dispatch({ type: ABORT_RUN })
       dispatch({ type: CLEAR_PENDING_INTERRUPT })
     }
-    const threadId = `thread_${generateId()}`
+    
+    // 如果已有 threadId，直接使用；否则生成新的
+    const threadId = existingThreadId || `thread_${generateId()}`
     dispatch({ type: NEW_THREAD, payload: { threadId } })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.isStreaming, state.pendingInterrupt])
@@ -549,12 +548,22 @@ export function ChatProvider(props: ChatProviderProps) {
 
   reconnectRunRef.current = reconnectRun
 
-  /* ---------------- switchThread ---------------- */
+  /* ---------------- switchThread（可选择不调用 agent）---------------- */
   const switchThread = useCallback(
-    async (threadId: string) => {
+    async (threadId: string, forceAgentCall: boolean = true) => {
       agentRef.current?.abort()
       dispatch({ type: CLEAR_PENDING_INTERRUPT })
       dispatch({ type: SWITCH_THREAD, payload: { threadId, messages: [] } })
+
+      // 如果是新创建且已经有消息快照的会话，只需 reconnect
+      // 否则调用 agent 获取历史消息
+      if (!forceAgentCall) {
+        // 直接 reconnect，不通过 agent
+        setTimeout(() => {
+          reconnectRun(threadId)
+        }, 0)
+        return
+      }
 
       const runId = `run_${generateId()}`
       let forwardedProps: Record<string, any> = {}
@@ -585,7 +594,7 @@ export function ChatProvider(props: ChatProviderProps) {
       }
       await agentRef.current?.run(input, switchCallbacks)
     },
-    [buildRunCallbacks],
+    [buildRunCallbacks, reconnectRun],
   )
 
   /* ---------------- continueRun（续跑） ---------------- */

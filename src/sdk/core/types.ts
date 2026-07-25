@@ -435,8 +435,8 @@ export interface ChatSDKProps {
 }
 
 export interface ChatSDKHandle {
-  switchThread: (id: string) => Promise<void>
-  createThread: () => Promise<void>
+  switchThread: (id: string, forceAgentCall?: boolean) => Promise<void>
+  createThread: (existingThreadId?: string) => Promise<void>
   getThreadId: () => string
 }
 

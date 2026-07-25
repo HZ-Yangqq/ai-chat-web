@@ -27,8 +27,8 @@ export default function NewChatPage() {
         context: [],
         forwardedProps: {},
       });
-      // 触发事件通知 Sidebar 刷新列表
-      window.dispatchEvent(new CustomEvent('newThreadCreated'));
+      // 保存 threadId 到 localStorage 供详情页使用
+      localStorage.setItem('temp_created_thread_id', threadId);
       navigate(`/chat/${threadId}`, { replace: true });
     } catch (err) {
       console.error('[NewChat] createThread failed:', err);
@@ -48,6 +48,7 @@ export default function NewChatPage() {
     <div className={styles.container}>
       <div className={styles.welcomeArea}>
         <h1 className={styles.title}>开始一段新的对话吧</h1>
+        <p className={styles.subtitle}>让灵感在交流中绽放 ✨</p>
       </div>
       <div className={styles.inputArea}>
         <div className={styles.inputWrapper}>

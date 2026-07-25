@@ -1,7 +1,7 @@
 /**
  * 侧边栏：新建会话按钮 + 会话历史列表
  */
-import { useCallback, useEffect, useState, forwardRef, useImperativeHandle, useRef } from 'react';
+import { useCallback, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Popconfirm, message } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
@@ -48,18 +48,6 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
 
   useEffect(() => {
     fetchThreads();
-  }, [fetchThreads]);
-
-  // 监听创建会话事件
-  useEffect(() => {
-    const handleCreateEvent = () => {
-      fetchThreads();
-    };
-    
-    window.addEventListener('newThreadCreated', handleCreateEvent as EventListener);
-    return () => {
-      window.removeEventListener('newThreadCreated', handleCreateEvent as EventListener);
-    };
   }, [fetchThreads]);
 
   const handleCreate = () => {
