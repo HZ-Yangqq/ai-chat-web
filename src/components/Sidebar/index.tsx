@@ -3,7 +3,7 @@
  */
 import { useCallback, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Popconfirm, message } from 'antd';
+import { Popconfirm, message } from 'antd';
 import { DeleteOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { getThreadList, deleteThread } from '@/service/chat';
 import type { ThreadListItem } from '@/service/types';
@@ -69,14 +69,13 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
       <div className={styles.header}>
         <div className={styles.brand}>Yang Chat</div>
         <div className={styles.btnWrap}>
-          <Button
-            icon={<PlusCircleOutlined />}
-            onClick={handleCreate}
-          >
-            新建会话
-          </Button>
+          <div className={styles.createBtn} onClick={handleCreate}>
+            <PlusCircleOutlined />
+            <span>新建会话</span>
+          </div>
         </div>
       </div>
+      <div className={styles.listLabel}>最近会话</div>
       <div className={styles.list}>
         {loading && !threads.length && (
           <div className={styles.empty}>加载中...</div>

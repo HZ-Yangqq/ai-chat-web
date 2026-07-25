@@ -6,19 +6,18 @@
   background: rgb(247, 247, 249);
   flex-direction: column;
   border-right: 1px solid var(--ant-color-border-secondary, #f0f0f0);
-  background: var(--ant-color-bg-container, #fff);
+  background: rgb(247, 247, 249);
 }
 
 .header {
   padding: 16px;
-  border-bottom: 1px solid var(--ant-color-border-secondary, #f0f0f0);
+  /* border-bottom: 1px solid var(--ant-color-border-secondary, #f0f0f0); */
 }
 
 .brand {
   font-size: 22px;
   font-weight: 700;
-  margin: 0 0 24px 0;
-  text-align: center;
+  margin: 0 0 24px 6px;
   background: linear-gradient(90deg, #8db9f7, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -28,6 +27,31 @@
 .btnWrap {
   display: flex;
   justify-content: center;
+}
+
+.createBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 70px;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.createBtn:hover {
+  color: #7c3aed;
+  border-color: #7c3aed;
+}
+
+.listLabel {
+  padding: 8px 12px 4px;
+  font-size: 12px;
+  color: #ccc;
 }
 
 .list {
