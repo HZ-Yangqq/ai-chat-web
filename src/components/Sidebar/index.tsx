@@ -4,7 +4,7 @@
 import { useCallback, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Popconfirm, message } from 'antd';
-import { PlusOutlined, DeleteOutlined, MessageOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { getThreadList, deleteThread } from '@/service/chat';
 import type { ThreadListItem } from '@/service/types';
 import styles from './index.module.css';
@@ -15,12 +15,13 @@ export interface SidebarHandle {
 
 function formatTime(ts: number): string {
   const d = new Date(ts);
-  const now = new Date();
-  const isToday = d.toDateString() === now.toDateString();
-  if (isToday) {
-    return d.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-  }
-  return d.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+  return d.toLocaleString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
@@ -68,6 +69,7 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.header}>
+        <div className={styles.brand}>Yang Chat</div>
         <Button
           type="primary"
           icon={<PlusOutlined />}
@@ -90,7 +92,6 @@ const Sidebar = forwardRef<SidebarHandle>(function Sidebar(_props, ref) {
             className={`${styles.item} ${thread.id === activeThreadId ? styles.active : ''}`}
             onClick={() => navigate(`/chat/${thread.id}`)}
           >
-            <MessageOutlined className={styles.itemIcon} />
             <div className={styles.itemContent}>
               <div className={styles.itemTitle}>{thread.title}</div>
               <div className={styles.itemTime}>{formatTime(thread.updatedAt)}</div>
